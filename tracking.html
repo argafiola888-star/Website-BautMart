@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Tracking - BAUT MART</title>
+    <style>
+        /* Pengaturan Dasar (Sama dengan halaman lain agar konsisten) */
+        body { font-family: Arial, sans-serif; margin: 0; background-color: #f9f9f9; padding-bottom: 50px; }
+        header { background-color: blueviolet; color: white; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; }
+        nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: bold; }
+        
+        /* Pengaturan Area Tracking */
+        .tracking-container {
+            max-width: 500px;
+            margin: 60px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .tracking-container h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .tracking-input {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .btn-track {
+            background-color:blueviolet;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn-track:hover {
+            background-color: blueviolet;
+        }
+
+        /* Kotak Hasil Pencarian (Awalnya Tersembunyi) */
+        .result-box {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            color: #2e7d32;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 25px;
+            display: none; /* Disembunyikan sebelum diklik */
+            text-align: center;
+        }
+        .result-box p {
+            margin: 0 0 15px 0;
+            font-weight: bold;
+        }
+        .map-img {
+            width: 100%;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1> BAUT MART</h1>
+        <nav>
+            <a href="index.html">Beranda</a>
+            <a href="katalog.html">Katalog</a>
+            <a href="tracking.html">Tracking</a>
+            <a href="login.html">Login / Daftar</a>
+        </nav>
+    </header>
+
+    <div class="tracking-container">
+        <h2>Lacak Pesanan Anda</h2>
+        <p>Masukkan Nomor Pesanan (Misal: Lacak-12345)</p>
+        
+        <input type="text" id="nomor-resi" class="tracking-input" placeholder="Lacak-12345">
+        
+        <button class="btn-track" onclick="tampilkanTracking()">Lacak Sekarang</button>
+
+        <div id="hasil-tracking" class="result-box">
+            <p>📦 Pesanan <span id="resi-tampil" style="color: #d32f2f;"></span> sedang dalam perjalanan dari TOKO ke alamat Anda.</p>
+            
+            <img src="Dalam Perjalanan.jpg" alt="Peta Lokasi Pengiriman" class="map-img">
+            
+            <p style="margin-top: 15px; font-size: 14px; color: #555; font-weight: normal;">
+                🚚 Estimasi tiba: <strong>Hari ini, 15:00 WIB</strong><br>
+                Kurir: rafli Pengiriman Cepat
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function tampilkanTracking() {
+            // Mengambil nilai teks dari kolom input
+            let resiInput = document.getElementById("nomor-resi").value;
+
+            // Mengecek apakah kolom input kosong
+            if (resiInput.trim() === "") {
+                alert("Harap masukkan Nomor Pesanan Anda terlebih dahulu!");
+            } else {
+                // Memasukkan teks nomor resi yang diketik ke dalam kotak hasil
+                document.getElementById("resi-tampil").innerText = resiInput;
+                
+                // Memunculkan kotak hasil dan peta (mengubah display dari none jadi block)
+                document.getElementById("hasil-tracking").style.display = "block";
+            }
+        }
+    </script>
+
+</body>
+</html>
